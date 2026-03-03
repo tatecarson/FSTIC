@@ -4,7 +4,4 @@ soundfile>=0.10.3
 pydub>=0.25.1
 matplotlib>=3.4.0
 pandas>=1.2.0
-wave>=0.0.2
-hashlib>=20081119
-argparse>=1.4.0
 contextlib2>=0.6.0

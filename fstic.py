@@ -1,11 +1,23 @@
 import numpy as np
 import math
+import os
+import tempfile
 import soundfile as sf
 from scipy.signal import butter, sosfilt
 from pydub import AudioSegment
+
+# Ensure plotting/font caches are writable in locked-down environments.
+if "MPLCONFIGDIR" not in os.environ:
+    os.environ["MPLCONFIGDIR"] = os.path.join(tempfile.gettempdir(), "matplotlib")
+if "XDG_CACHE_HOME" not in os.environ:
+    os.environ["XDG_CACHE_HOME"] = os.path.join(tempfile.gettempdir(), "xdg-cache")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["XDG_CACHE_HOME"], exist_ok=True)
+
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-import os
 import datetime
 from matplotlib.backends.backend_pdf import PdfPages
 import wave

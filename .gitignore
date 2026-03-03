@@ -1,0 +1,17 @@
+# OS/editor
+.DS_Store
+
+# Python caches/environments
+__pycache__/
+.pycache/
+.venv/
+*.py[cod]
+
+# Notebook artifacts
+.ipynb_checkpoints/
+
+# Local runtime output
+output/
+
+# Local audio datasets
+speech/

@@ -6,6 +6,37 @@
 
 FSTIC is a Python tool for analyzing speech intelligibility in audio files, particularly for forensic applications. It implements the Speech Transmission Index (STI) methodology based on the research paper by Costantini, Paoloni, and Todisco: ["Objective Speech Intelligibility Measures Based on Speech Transmission Index for Forensic Applications"](https://www.researchgate.net/publication/279467055_Objective_Speech_Intelligibility_Measures_Based_on_Speech_Transmission_Index_for_Forensic_Applications).
 
+## Fork Notice
+
+This repository is a fork/adaptation of the original FSTIC project:
+https://github.com/StefFriend/FSTIC
+
+This fork adds course-focused deployment improvements, especially simplified student setup and launch workflows.
+
+## Student Quick Start (Primary)
+
+Use this section first for classroom/student use.
+
+1. Run one-time setup:
+```bash
+./setup_student.command
+```
+2. Launch:
+```bash
+./launch_student.command
+```
+3. If GUI launch fails, it auto-falls back to notebook, or you can run:
+```bash
+./launch_notebook.command
+```
+The notebook includes clickable widgets (dropdowns/buttons) for file selection, so students do not need to type filenames.
+4. In the app/notebook:
+- Choose mode: Single File, Folder (Batch), or Compare Two Files
+- Select input files/folder
+- Click `Run Analysis`
+
+Outputs are saved under `output/student-runs` by default (or the output folder selected in the GUI).
+
 ## Overview
 
 This tool is designed to provide objective measurements of speech intelligibility in challenging audio conditions, such as recordings from lawful interceptions or other forensic audio sources. It calculates the Speech Transmission Index (STI) over time for audio files and generates comprehensive analysis reports.
