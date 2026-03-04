@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/../.."
 
 echo "[1/3] Creating virtual environment (.venv)..."
 python3 -m venv .venv
@@ -16,5 +16,4 @@ pip install notebook
 pip install ipywidgets
 
 echo "Setup complete."
-echo "Next: run ./launch_student.command"
-echo "If GUI fails, run ./launch_notebook.command"
+echo "Next: run scripts/mac/launch_notebook.command"

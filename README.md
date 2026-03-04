@@ -17,25 +17,36 @@ This fork adds course-focused deployment improvements, especially simplified stu
 
 Use this section first for classroom/student use.
 
+### macOS
+
 1. Run one-time setup:
 ```bash
-./setup_student.command
+./scripts/mac/setup_student.command
 ```
-2. Launch:
+2. Launch the notebook:
 ```bash
-./launch_student.command
+./scripts/mac/launch_notebook.command
 ```
-3. If GUI launch fails, it auto-falls back to notebook, or you can run:
-```bash
-./launch_notebook.command
+
+### Windows
+
+1. Run one-time setup (double-click or run in Command Prompt):
 ```
+scripts\windows\setup_student.bat
+```
+2. Launch the notebook:
+```
+scripts\windows\launch_notebook.bat
+```
+
 The notebook includes clickable widgets (dropdowns/buttons) for file selection, so students do not need to type filenames.
-4. In the app/notebook:
+
+3. In the notebook:
 - Choose mode: Single File, Folder (Batch), or Compare Two Files
 - Select input files/folder
 - Click `Run Analysis`
 
-Outputs are saved under `output/student-runs` by default (or the output folder selected in the GUI).
+Outputs are saved under `output/notebook-runs` by default.
 
 ## Overview
 
