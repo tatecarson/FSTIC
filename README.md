@@ -13,30 +13,30 @@ https://github.com/StefFriend/FSTIC
 
 This fork adds course-focused deployment improvements, especially simplified student setup and launch workflows.
 
-## Student Quick Start (Primary)
+## Quick Start
 
-Use this section first for classroom/student use.
+Use this section first for classroom use.
 
 ### macOS
 
 1. Run one-time setup:
 ```bash
-./scripts/mac/setup_student.command
+./scripts/mac/setup.command
 ```
 2. Launch the notebook:
 ```bash
-./scripts/mac/launch_notebook.command
+./scripts/mac/launch.command
 ```
 
 ### Windows
 
 1. Run one-time setup (double-click or run in Command Prompt):
 ```
-scripts\windows\setup_student.bat
+scripts\windows\setup.bat
 ```
 2. Launch the notebook:
 ```
-scripts\windows\launch_notebook.bat
+scripts\windows\launch.bat
 ```
 
 The notebook includes clickable widgets (dropdowns/buttons) for file selection, so students do not need to type filenames.

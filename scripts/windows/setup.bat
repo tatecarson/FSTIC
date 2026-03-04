@@ -14,5 +14,5 @@ pip install notebook
 pip install ipywidgets
 
 echo Setup complete.
-echo Next: run scripts\windows\launch_notebook.bat
+echo Next: run scripts\windows\launch.bat
 pause

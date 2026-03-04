@@ -16,4 +16,4 @@ pip install notebook
 pip install ipywidgets
 
 echo "Setup complete."
-echo "Next: run scripts/mac/launch_notebook.command"
+echo "Next: run scripts/mac/launch.command"
