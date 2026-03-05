@@ -50,6 +50,8 @@ Outputs are saved under `output/notebook-runs` by default.
 
 If you use Python 3.13+, `audioop` was removed from stdlib. This repo installs `audioop-lts` automatically from `requirements.txt` to keep MP3 fallback support working.
 
+Setup also enables a repo pre-commit hook (`.githooks/pre-commit`) that strips notebook outputs/widget state before commit, preventing personal file paths from being committed.
+
 ## Overview
 
 This tool is designed to provide objective measurements of speech intelligibility in challenging audio conditions, such as recordings from lawful interceptions or other forensic audio sources. It calculates the Speech Transmission Index (STI) over time for audio files and generates comprehensive analysis reports.

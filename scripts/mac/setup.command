@@ -15,5 +15,8 @@ pip install -r requirements.txt
 pip install notebook
 pip install ipywidgets
 
+echo "[Bonus] Enabling repository git hooks..."
+git config core.hooksPath .githooks
+
 echo "Setup complete."
 echo "Next: run scripts/mac/launch.command"

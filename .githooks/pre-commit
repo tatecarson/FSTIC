@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "python3 is required for notebook output stripping pre-commit hook."
+  exit 1
+fi
+
+notebooks="$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.ipynb$' || true)"
+
+if [ -z "$notebooks" ]; then
+  exit 0
+fi
+
+python3 - "$@" <<'PY'
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+changed = subprocess.check_output(
+    ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR"],
+    text=True,
+).splitlines()
+notebooks = [Path(path) for path in changed if path.endswith(".ipynb")]
+
+updated = []
+for nb_path in notebooks:
+    try:
+        data = json.loads(nb_path.read_text(encoding="utf-8"))
+    except Exception:
+        continue
+    dirty = False
+    for cell in data.get("cells", []):
+        if cell.get("cell_type") == "code":
+            if cell.get("outputs"):
+                cell["outputs"] = []
+                dirty = True
+            if cell.get("execution_count") is not None:
+                cell["execution_count"] = None
+                dirty = True
+    metadata = data.get("metadata", {})
+    if "widgets" in metadata:
+        metadata.pop("widgets", None)
+        dirty = True
+    if dirty:
+        nb_path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        updated.append(str(nb_path))
+
+if updated:
+    subprocess.check_call(["git", "add", *updated])
+    print("Stripped notebook outputs:", ", ".join(updated))
+PY
