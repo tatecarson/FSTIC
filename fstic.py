@@ -4,7 +4,12 @@ import os
 import tempfile
 import soundfile as sf
 from scipy.signal import butter, sosfilt
-from pydub import AudioSegment
+try:
+    from pydub import AudioSegment
+    PYDUB_IMPORT_ERROR = None
+except Exception as exc:
+    AudioSegment = None
+    PYDUB_IMPORT_ERROR = exc
 
 # Ensure plotting/font caches are writable in locked-down environments.
 if "MPLCONFIGDIR" not in os.environ:
@@ -57,8 +62,13 @@ def read_audio_file(filepath):
     """
     try:
         data, fs = sf.read(filepath)
-    except Exception:
+    except Exception as soundfile_error:
         # Fallback using pydub for unsupported formats (e.g., MP3)
+        if AudioSegment is None:
+            raise RuntimeError(
+                "Could not read audio with soundfile, and pydub is unavailable. "
+                "On Python 3.13+ install 'audioop-lts' or use Python 3.12."
+            ) from (PYDUB_IMPORT_ERROR or soundfile_error)
         audio = AudioSegment.from_file(filepath)
         fs = audio.frame_rate
         if audio.channels > 1:
